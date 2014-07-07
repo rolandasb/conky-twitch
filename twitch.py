@@ -36,5 +36,5 @@ if path == "/":
 	path = ""
 
 f = open(path + "streams.txt", "w")
-f.write(output)
+f.write(output.encode('utf8'))
 f.close()
