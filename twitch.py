@@ -6,7 +6,7 @@ import os.path
 twitch_username = "your-twitch-username-here"
 
 # Let's fetch and parse data from twitch
-r = urllib2.urlopen("https://api.twitch.tv/kraken/users/"+ twitch_username +"/follows/channels").read()
+r = urllib2.urlopen("https://api.twitch.tv/kraken/users/"+ twitch_username +"/follows/channels?limit=250").read()
 raw_data = json.loads(r)
 
 output = ""
