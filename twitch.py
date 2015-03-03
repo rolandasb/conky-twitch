@@ -3,7 +3,7 @@ import urllib2
 import os.path
 
 # Settings
-twitch_username = "xrbrs"
+twitch_username = "your-twitch-username-here"
 
 # Let's fetch and parse data from twitch
 r = urllib2.urlopen("https://api.twitch.tv/kraken/users/"+ twitch_username +"/follows/channels?limit=100").read()
