@@ -14,4 +14,4 @@ Show your live followed Twitch.tv channels in conky.
 
 ### License
 
-This code is free software; you can redistribute it and/or modify it under the terms of the zlib License. A copy of this license can be found in the included LICENSE file.
+conky-twitch is released under the MIT license.
