@@ -4,16 +4,17 @@ import os.path
 
 # Settings
 twitch_username = "your-twitch-username-here"
+client_id = "jhf1vq4domnl8a9ix1jl6sbv6w0y7yt&"
 
 # Let's fetch and parse data from twitch
-r = urllib2.urlopen("https://api.twitch.tv/kraken/users/"+ twitch_username +"/follows/channels?limit=75").read()
+r = urllib2.urlopen("https://api.twitch.tv/kraken/users/"+ twitch_username +"/follows/channels?client_id="+ client_id +"&limit=75").read()
 raw_data = json.loads(r)
 output = ""
 
 pages = (raw_data["_total"] - 1) / 75
 for page in range(0, pages+1):
   if (page != 0):
-    r = urllib2.urlopen("https://api.twitch.tv/kraken/users/"+ twitch_username +"/follows/channels?direction=DESC&limit=75&offset=%d&sortby=created_at" % (75 * page)).read()
+    r = urllib2.urlopen("https://api.twitch.tv/kraken/users/"+ twitch_username +"/follows/channels?client_id="+ client_id +"&direction=DESC&limit=75&offset=%d&sortby=created_at" % (75 * page)).read()
     raw_data = json.loads(r)
 
   # Get followed channels
@@ -22,20 +23,20 @@ for page in range(0, pages+1):
     followed_channels.append(channel["channel"]["name"])
 
   # Get live streams
-  r = urllib2.urlopen("https://api.twitch.tv/kraken/streams?channel=%s" % ','.join(followed_channels))
+  r = urllib2.urlopen("https://api.twitch.tv/kraken/streams?client_id="+ client_id +"&channel=%s" % ','.join(followed_channels))
   live_streams = json.loads(r.read())
 
   for stream in live_streams["streams"]:
     channel_name = stream["channel"]["display_name"]
-    
-    # For some strange reason channel status and game sometimes temporarely 
+
+    # For some strange reason channel status and game sometimes temporarily
     # disappears from Twitch API, causing problems in this script. It this case,
     # we don't show status/game in conky at all.
     try:
       channel_title = stream["channel"]["status"]
     except KeyError:
       channel_title = ""
-    
+
     try:
       channel_game = stream["channel"]["game"]
     except KeyError:
