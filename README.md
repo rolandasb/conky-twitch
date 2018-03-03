@@ -1,6 +1,8 @@
 conky-twitch
 ============
 
+**This project is not maintained anymore. If you want to maintain it, feel free to make a fork.**
+
 Show your live followed Twitch.tv channels in conky.
 
 ![preview](http://i.imgur.com/RTlZxYw.png)
